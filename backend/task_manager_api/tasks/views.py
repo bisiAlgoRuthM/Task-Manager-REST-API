@@ -30,7 +30,7 @@ def get_tasks_list(request, format=None):
     if request.method == 'GET':
         tasks = Task.objects.all()
         serializer =TaskSerializer(tasks, many=True)
-        return JsonResponse(serializer.data)
+        return JsonResponse(serializer.data, safe=False)
     if request.method  == 'POST':
         serializer = TaskSerializer(data= request.data)
         if serializer.is_valid():
